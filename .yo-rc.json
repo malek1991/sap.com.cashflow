@@ -1,0 +1,17 @@
+{
+  "generator-ui5-ts-app": {
+    "namespace": "sap.com.cashflow",
+    "framework": "SAPUI5",
+    "frameworkVersion": "1.120.1",
+    "author": "Malek Slimani",
+    "initrepo": false,
+    "tstypes": "@sapui5/types",
+    "tstypesVersion": "1.120.1",
+    "appId": "sap.com.cashflow",
+    "appURI": "sap/com/cashflow",
+    "cdnDomain": "ui5.sap.com",
+    "defaultTheme": "sap_horizon",
+    "gte11150": true,
+    "setupCompleted": true
+  }
+}

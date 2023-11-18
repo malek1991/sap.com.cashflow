@@ -1,0 +1,46 @@
+<mvc:View
+	controllerName="sap.com.cashflow.controller.Main"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	core:require="{
+		formatter: 'sap/com/cashflow/model/formatter'
+	}">
+
+	<Page id="page" title="{i18n>title}">
+		<content>
+			<VBox class="worklist-box">
+				<Table items="{/ProductCollection}" headerText="{i18n>worklsit_headerText}">
+					<columns>
+						<Column id="productCol" width="12em">
+							<Text text="Product" />
+						</Column>
+						<Column id="supplierCol" minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Supplier" />
+						</Column>
+						<Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+							<Text id="_IDGenText3" text="Dimensions" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Active" vAlign="Middle" navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'ProductId'
+						],
+						formatter: '.isNavigated'
+					}" press="onPress">
+							<cells>
+								<ObjectIdentifier title="{Name}" text="{ProductId}" />
+								<Text text="{SupplierName}" />
+								<Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</VBox>
+		</content>
+	</Page>
+
+</mvc:View>
