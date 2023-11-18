@@ -1,14 +1,11 @@
-<mvc:View
-	controllerName="sap.com.cashflow.controller.Main"
-	displayBlock="true"
+<mvc:View controllerName="sap.com.cashflow.controller.Main" displayBlock="true"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core"
-	core:require="{
+	xmlns:core="sap.ui.core" core:require="{
 		formatter: 'sap/com/cashflow/model/formatter'
 	}">
 
-	<Page id="page" title="{i18n>title}">
+	<Page id="page" title="ddd ff">
 		<content>
 			<VBox class="worklist-box">
 				<Table items="{/ProductCollection}" headerText="{i18n>worklsit_headerText}">
