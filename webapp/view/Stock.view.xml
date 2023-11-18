@@ -1,0 +1,50 @@
+<mvc:View controllerName="sap.com.cashflow.controller.Main" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core" core:require="{
+		formatter: 'sap/com/cashflow/model/formatter'
+	}">
+
+    <Page id="stock">
+        <content>
+            <VBox class="worklist-box">
+                <Table id= "wTable" items="{WorklistModel>/}" headerText="{i18n>worklsit_headerText}">
+                    <headerToolbar>
+                        <Toolbar>
+                            <Title text="Stocks" level="H2"/>
+                            <ToolbarSpacer/>
+                            <SearchField liveChange="onSearch" placeholder="Search by symbol.." width="30rem" />
+                        </Toolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="12em">
+                            <Text text="Symbol" />
+                        </Column>
+                        <Column minScreenWidth="Tablet" demandPopin="true" width="70%">
+                            <Text text="Name" />
+                        </Column>
+                        <Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Exchange" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Active" vAlign="Middle" navigated="{
+						parts: [
+							'settings>/navigatedItem',
+							'ProductId'
+						],
+						formatter: '.isNavigated'
+					}" press="onPress">
+                            <cells>
+                                <ObjectIdentifier title="{WorklistModel>symbol}" text="{name}" />
+                                <Text text="{WorklistModel>name}" />
+                                <Text text="{WorklistModel>exchange}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
+
+</mvc:View>

@@ -1,85 +1,97 @@
 {
-    "_version": "1.12.0",
-    "sap.app": {
-        "id": "sap.com.cashflow",
-        "type": "application",
-        "i18n": "i18n/i18n.properties",
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "applicationVersion": {
-            "version": "1.0.0"
-        },
-        "sourceTemplate": {
-            "id": "@sap/ux-app-migrator:freestyle",
-            "version": "1.11.4",
-            "toolsId": "7d11c6f0-a494-4a26-ada2-0e8eedcd0037"
-        }
-    },
-    "sap.ui": {
-        "technology": "UI5",
-        "icons": {},
-        "deviceTypes": {
-            "desktop": true,
-            "tablet": true,
-            "phone": true
-        }
-    },
-    "sap.ui5": {
-        "rootView": {
-            "viewName": "sap.com.cashflow.view.App",
-            "type": "XML",
-            "async": true,
-            "id": "app"
-        },
-        "dependencies": {
-            "minUI5Version": "1.120.1",
-            "libs": {
-                "sap.ui.core": {},
-                "sap.m": {}
-            }
-        },
-        "handleValidation": true,
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
-        },
-        "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "sap.com.cashflow.i18n.i18n"
-                }
-            }
-        },
-        "resources": {
-            "css": [
-                {
-                    "uri": "css/style.css"
-                }
-            ]
-        },
-        "routing": {
-            "config": {
-                "routerClass": "sap.m.routing.Router",
-                "viewType": "XML",
-                "viewPath": "sap.com.cashflow.view",
-                "controlId": "app",
-                "controlAggregation": "pages",
-                "async": true
-            },
-            "routes": [
-                {
-                    "pattern": "",
-                    "name": "main",
-                    "target": "main"
-                }
-            ],
-            "targets": {
-                "main": {
-                    "viewId": "main",
-                    "viewName": "Main"
-                }
-            }
-        }
-    }
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "sap.com.cashflow",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"sourceTemplate": {
+			"id": "@sap/ux-app-migrator:freestyle",
+			"version": "1.11.4",
+			"toolsId": "7d11c6f0-a494-4a26-ada2-0e8eedcd0037"
+		}
+	},
+	"sap.ui": {
+		"fullWidth": true,
+		"technology": "UI5",
+		"icons": {},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.com.cashflow.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.120.1",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"handleValidation": true,
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.com.cashflow.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sap.com.cashflow.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "main",
+					"target": "main"
+				},
+				{
+					"pattern": "stock/{symbol}",
+					"name": "stock",
+					"target": "stock"
+				}
+			],
+			"targets": {
+				"main": {
+					"viewId": "main",
+					"viewName": "Main",
+					"viewLevel": 1
+				},
+				"stock": {
+					"viewId": "stock",
+					"viewName": "Stock",
+					"viewLevel": 2
+				}
+			}
+		}
+	}
 }

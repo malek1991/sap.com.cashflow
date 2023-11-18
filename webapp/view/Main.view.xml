@@ -5,19 +5,26 @@
 		formatter: 'sap/com/cashflow/model/formatter'
 	}">
 
-	<Page id="page" title="ddd ff">
+	<Page id="page">
 		<content>
 			<VBox class="worklist-box">
-				<Table items="{/ProductCollection}" headerText="{i18n>worklsit_headerText}">
+				<Table id= "wTable" items="{WorklistModel>/}" headerText="{i18n>worklsit_headerText}">
+					<headerToolbar>
+						<Toolbar>
+							<Title text="Stocks" level="H2"/>
+							<ToolbarSpacer/>
+							<SearchField liveChange="onSearch" placeholder="Search by symbol.." width="30rem" />
+						</Toolbar>
+					</headerToolbar>
 					<columns>
-						<Column id="productCol" width="12em">
-							<Text text="Product" />
+						<Column width="12em">
+							<Text text="Symbol" />
 						</Column>
-						<Column id="supplierCol" minScreenWidth="Tablet" demandPopin="true">
-							<Text text="Supplier" />
+						<Column minScreenWidth="Tablet" demandPopin="true" width="70%">
+							<Text text="Name" />
 						</Column>
-						<Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-							<Text id="_IDGenText3" text="Dimensions" />
+						<Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true">
+							<Text text="Exchange" />
 						</Column>
 					</columns>
 					<items>
@@ -29,9 +36,9 @@
 						formatter: '.isNavigated'
 					}" press="onPress">
 							<cells>
-								<ObjectIdentifier title="{Name}" text="{ProductId}" />
-								<Text text="{SupplierName}" />
-								<Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+								<ObjectIdentifier title="{WorklistModel>symbol}" text="{name}" />
+								<Text text="{WorklistModel>name}" />
+								<Text text="{WorklistModel>exchange}" />
 							</cells>
 						</ColumnListItem>
 					</items>

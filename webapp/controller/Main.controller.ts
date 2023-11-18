@@ -1,66 +1,70 @@
-import MessageBox from "sap/m/MessageBox";
-import BaseController from "./BaseController";
-import axios from "axios";
 import JSONModel from "sap/ui/model/json/JSONModel";
+import { getAllActiveStocks } from "../model/common/StocksApi";
+import BaseController from "./BaseController";
 import { parse } from "papaparse";
+import Filter from "sap/ui/model/Filter";
+import FilterOperator from "sap/ui/model/FilterOperator";
 
 /**
  * @namespace sap.com.cashflow.controller
  */
 export default class Main extends BaseController {
 	public onInit(): void {
-		this.sayHello();
+		this._getAllActiveStocks();
 	}
 
-	public sayHello(): void {
-		//MessageBox.show("Hello World!");
+	public onSearch(oEvent: any): void {
+		// add filter for search
+		var aFilters = [];
+		var sQuery = oEvent.getSource().getValue();
+		if (sQuery && sQuery.length > 0) {
+			var filter = new Filter("symbol", FilterOperator.Contains, sQuery);
+			aFilters.push(filter);
+		}
 
-		this._get(
-			"https://www.alphavantage.co/query?function=LISTING_STATUS&date=2014-07-10&state=delisted&apikey=demo",
-			"csv"
-		);
+		// update list binding
+		var oList = this.byId("wTable");
+		var oBinding = oList.getBinding("items");
+		// @ts-ignore
+		oBinding.filter(aFilters, "Application");
 	}
 
-	private _get(apiEndpoint: string, responseFormat: string = "json"): void {
-		//const papa = require("papaparse");
-		// Make the API call using Axios
-		axios
-			.get(apiEndpoint)
+	public onPress(oEvent: any): void {
+		const symbol = oEvent
+			.getSource()
+			.getBindingContext("WorklistModel")
+			.getProperty("symbol");
+		this.getRouter().navTo("stock", {
+			symbol: symbol,
+		});
+	}
+
+	private _getAllActiveStocks() {
+		getAllActiveStocks()
 			.then((response) => {
-				// Handle the API response data
 				const responseData = response.data;
-				console.log(responseData);
-				if (responseFormat === "cvs") {
-					parse(response.data, {
-						header: true, // Assumes the first row in the CSV file contains headers
-						dynamicTyping: true, // Automatically detect and convert numeric values
-						complete: (result: any) => {
-							// Handle the parsed data
-							const parsedData = result.data;
-							console.log(parsedData);
+				let parsedData = {};
 
-							// Perform further actions with the parsed data, e.g., update the model
-						},
-						error: (error: any) => {
-							// Handle parsing errors
-							console.error("CSV Parsing Error:", error.message);
-
-							// Show an error message to the user
-							MessageBox.error("Error parsing CSV data");
-						},
-					});
-				}
+				parse(responseData, {
+					header: true,
+					dynamicTyping: true,
+					complete: (result) => {
+						// Handle the parsed data
+						parsedData = result.data;
+					},
+					error: (error: Error) => {
+						// Handle parsing errors
+						console.error("CSV Parsing Error:", error.message);
+					},
+				});
 
 				var oModel = new JSONModel();
 
-				oModel.setData(response);
-
-				return oModel;
+				oModel.setData(parsedData);
+				this.setModel(oModel, "WorklistModel");
 			})
 			.catch((error) => {
-				//nReject(error);
-				// Show an error message to the user
-				MessageBox.error("Error fetching data from the API");
+				console.error("get axios error:", error.message);
 			});
 	}
 }
