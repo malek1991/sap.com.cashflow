@@ -4,6 +4,8 @@ import BaseController from "./BaseController";
 import { parse } from "papaparse";
 import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
+import { IActiveStock } from "../interface/IActiveStock";
+import list from "../model/list.json";
 
 /**
  * @namespace sap.com.cashflow.controller
@@ -19,7 +21,9 @@ export default class Main extends BaseController {
 		var sQuery = oEvent.getSource().getValue();
 		if (sQuery && sQuery.length > 0) {
 			var filter = new Filter("symbol", FilterOperator.Contains, sQuery);
+			//var filter2 = new Filter("name", FilterOperator.Contains, sQuery);
 			aFilters.push(filter);
+			//aFilters.push(filter2);
 		}
 
 		// update list binding
@@ -43,14 +47,24 @@ export default class Main extends BaseController {
 		getAllActiveStocks()
 			.then((response) => {
 				const responseData = response.data;
-				let parsedData = {};
+				let parsedData: IActiveStock[] = [];
+
+				if (Object.keys(responseData).length === 0) {
+					let oModel = new JSONModel();
+
+					oModel.loadData("../model/list.json");
+					this.setModel(oModel, "WorklistModel");
+					return;
+				}
 
 				parse(responseData, {
 					header: true,
 					dynamicTyping: true,
 					complete: (result) => {
 						// Handle the parsed data
+						// @ts-ignore
 						parsedData = result.data;
+						delete parsedData[6568];
 					},
 					error: (error: Error) => {
 						// Handle parsing errors
@@ -58,7 +72,7 @@ export default class Main extends BaseController {
 					},
 				});
 
-				var oModel = new JSONModel();
+				let oModel = new JSONModel();
 
 				oModel.setData(parsedData);
 				this.setModel(oModel, "WorklistModel");

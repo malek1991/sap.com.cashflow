@@ -14,7 +14,9 @@
 			"sap/com/cashflow/*": ["./webapp/*"],
 			"unit/*": ["./webapp/test/unit/*"],
 			"integration/*": ["./webapp/test/integration/*"]
-		}
+		},
+		"esModuleInterop": true,
+		"resolveJsonModule": true
 	},
 	"include": ["./webapp/**/*"],
 	"exclude": ["./webapp/coverage/**/*"]

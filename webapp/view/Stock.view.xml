@@ -1,50 +1,172 @@
-<mvc:View controllerName="sap.com.cashflow.controller.Main" displayBlock="true"
-    xmlns="sap.m"
+<mvc:View controllerName="sap.com.cashflow.controller.Stock"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core" core:require="{
-		formatter: 'sap/com/cashflow/model/formatter'
-	}">
+    xmlns="sap.uxap"
+    xmlns:microchart="sap.suite.ui.microchart"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout"
+    xmlns:custom="sap.com.cashflow.controls"
+    xmlns:m="sap.m" height="100%"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+    <ObjectPageLayout enableLazyLoading="true" useIconTabBar="true" showTitleInHeaderContent="false" upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageHeader objectTitle="{StockModel>/Name}" objectSubtitle="{StockModel>/Symbol}" objectImageShape="Circle"/>
+        </headerTitle>
 
-    <Page id="stock">
-        <content>
-            <VBox class="worklist-box">
-                <Table id= "wTable" items="{WorklistModel>/}" headerText="{i18n>worklsit_headerText}">
-                    <headerToolbar>
-                        <Toolbar>
-                            <Title text="Stocks" level="H2"/>
-                            <ToolbarSpacer/>
-                            <SearchField liveChange="onSearch" placeholder="Search by symbol.." width="30rem" />
-                        </Toolbar>
-                    </headerToolbar>
-                    <columns>
-                        <Column width="12em">
-                            <Text text="Symbol" />
-                        </Column>
-                        <Column minScreenWidth="Tablet" demandPopin="true" width="70%">
-                            <Text text="Name" />
-                        </Column>
-                        <Column id="dimensionsCol" minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Exchange" />
-                        </Column>
-                    </columns>
-                    <items>
-                        <ColumnListItem type="Active" vAlign="Middle" navigated="{
-						parts: [
-							'settings>/navigatedItem',
-							'ProductId'
-						],
-						formatter: '.isNavigated'
-					}" press="onPress">
-                            <cells>
-                                <ObjectIdentifier title="{WorklistModel>symbol}" text="{name}" />
-                                <Text text="{WorklistModel>name}" />
-                                <Text text="{WorklistModel>exchange}" />
-                            </cells>
-                        </ColumnListItem>
-                    </items>
-                </Table>
-            </VBox>
-        </content>
-    </Page>
+        <headerContent>
+            <layout:VerticalLayout>
+                <m:ObjectStatus title="Currency" text="{StockModel>/Currency}"/>
+                <m:ObjectStatus title="Exchange" text="{StockModel>/Exchange}"/>
+            </layout:VerticalLayout>
+        </headerContent>
 
+        <sections>
+
+            <ObjectPageSection titleUppercase="false" title="Overview">
+                <subSections>
+
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox class="sapUiSmallMargin">
+                                <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Company Information" singleContainerFullSize="true">
+                                    <f:content>
+                                        <m:Label text="Asset Type" />
+                                        <m:Text text="{StockModel>/AssetType}" />
+                                        <m:Label text="Country" />
+                                        <m:Text text="{StockModel>/Country}" />
+                                        <m:Label text="Sector" />
+                                        <m:Text text="{StockModel>/Sector}" />
+                                        <m:Label text="Industry" />
+                                        <m:Text text="{StockModel>/Industry}" />
+                                        <m:Label text="Address" />
+                                        <m:Text text="{StockModel>/Address}" />
+                                        <m:Label text="Asset Type" />
+                                        <m:Text text="{StockModel>/AssetType}" />
+                                    </f:content>
+                                </f:SimpleForm>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox class="sapUiSmallMargin">
+                                <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Financial Summary" singleContainerFullSize="true">
+                                    <f:content>
+                                        <m:Label text="Fiscal Year End" />
+                                        <m:Text text="{StockModel>/FiscalYearEnd}" />
+                                        <m:Label text="Latest Quarter" />
+                                        <m:Text text="{StockModel>/LatestQuarter}" />
+                                        <m:Label text="Market Capitalization" />
+                                        <m:Text text="{StockModel>/MarketCapitalization}" />
+                                        <m:Label text="Dividend Per Share" />
+                                        <m:Text text="{StockModel>/DividendPerShare}" />
+                                        <m:Label text="Dividend Yield" />
+                                        <m:Text text="{StockModel>/DividendYield}" />
+                                        <m:Label text="Revenue Per Share TTM" />
+                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
+                                        <m:Label text="Revenue PerShare TTM" />
+                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
+                                        <m:Label text="Quarterly Earnings Growth" />
+                                        <m:Text text="{StockModel>/QuarterlyEarningsGrowthYOY}" />
+                                        <m:Label text="Quarterly Revenue Growth" />
+                                        <m:Text text="{StockModel>/QuarterlyRevenueGrowthYOY}" />
+                                        <m:Label text="Analyst Target Price" />
+                                        <m:Text text="{StockModel>/AnalystTargetPrice}" />
+                                    </f:content>
+                                </f:SimpleForm>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:VBox class="sapUiSmallMargin">
+                                <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Business Summary" singleContainerFullSize="true">
+                                    <f:content>
+                                        <m:Text text="{StockModel>/Description}" />
+                                    </f:content>
+                                </f:SimpleForm>
+                            </m:VBox>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection titleUppercase="false" title="Cash Flow">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+
+                            <layout:FixFlex id='chartFixFlex' minFlexSize="250">
+                                <!--Below is the setting panel -->
+                                <layout:fixContent>
+                                    <m:Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="Settings" width="auto">
+                                        <m:content>
+                                            <m:HBox class='settingsHBox'>
+
+                                                <m:VBox class='settingsBox'>
+                                                    <m:Label text="Dimensions" design="Bold" class='settingsLabel'></m:Label>
+                                                    <m:RadioButtonGroup id='datasetRadioGroup' select="onDimensionSelected">
+                                                        <m:buttons>
+                                                            <m:RadioButton class='settingsRadio' selected="true" text="Yearly" />
+                                                            <m:RadioButton class='settingsRadio' text="Quarterly"/>
+                                                        </m:buttons>
+                                                    </m:RadioButtonGroup>
+                                                </m:VBox>
+
+                                                <m:VBox class='settingsBox'>
+                                                    <m:Label text="Compare Market" design="Bold" class='settingsLabel'></m:Label>
+                                                    <m:Button icon="sap-icon://compare" press="onComparePressed" ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                                                        <m:layoutData>
+                                                            <m:FlexItemData growFactor="1" />
+                                                        </m:layoutData>
+                                                    </m:Button>
+                                                </m:VBox>
+
+                                            </m:HBox>
+                                        </m:content>
+                                    </m:Panel>
+                                </layout:fixContent>
+                                <layout:flexContent>
+                                    <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='line'>
+
+                                        <viz:dataset>
+                                            <viz.data:FlattenedDataset data="{/dataset}">
+
+                                                <viz.data:dimensions>
+                                                    <viz.data:DimensionDefinition name="fiscalDateEnding" value="{fiscalDateEnding}" />
+                                                </viz.data:dimensions>
+
+                                                <viz.data:measures>
+                                                    <viz.data:MeasureDefinition name="operatingCashflow" value="{operatingCashflow}" />
+                                                    <viz.data:MeasureDefinition name="Cost" value="{Cost}" />
+                                                </viz.data:measures>
+
+                                            </viz.data:FlattenedDataset>
+                                        </viz:dataset>
+
+                                        <viz:feeds>
+                                            <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="operatingCashflow" />
+                                            <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="fiscalDateEnding" />
+                                        </viz:feeds>
+
+                                        <viz:dependents>
+                                            <viz:Popover id="idPopOver"></viz:Popover>
+                                        </viz:dependents>
+
+                                    </viz:VizFrame>
+                                </layout:flexContent>
+                            </layout:FixFlex>
+
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+    </ObjectPageLayout>
 </mvc:View>
+
