@@ -5,7 +5,6 @@ import { parse } from "papaparse";
 import Filter from "sap/ui/model/Filter";
 import FilterOperator from "sap/ui/model/FilterOperator";
 import { IActiveStock } from "../interface/IActiveStock";
-import list from "../model/list.json";
 
 /**
  * @namespace sap.com.cashflow.controller
@@ -44,6 +43,12 @@ export default class Main extends BaseController {
 	}
 
 	private _getAllActiveStocks() {
+		let oModel = new JSONModel();
+
+		oModel.loadData("../model/data/list.json");
+		this.setModel(oModel, "WorklistModel");
+		return;
+
 		getAllActiveStocks()
 			.then((response) => {
 				const responseData = response.data;
@@ -52,7 +57,7 @@ export default class Main extends BaseController {
 				if (Object.keys(responseData).length === 0) {
 					let oModel = new JSONModel();
 
-					oModel.loadData("../model/list.json");
+					oModel.loadData("../model/data/list.json");
 					this.setModel(oModel, "WorklistModel");
 					return;
 				}

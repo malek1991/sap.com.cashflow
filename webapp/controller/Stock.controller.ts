@@ -9,6 +9,11 @@ import Button from "sap/m/Button";
 import List from "sap/m/List";
 import StandardListItem from "sap/m/StandardListItem";
 import { ButtonType } from "sap/m/library";
+import OverflowToolbar from "sap/m/OverflowToolbar";
+import ToolbarSpacer from "sap/m/ToolbarSpacer";
+import SearchField from "sap/m/SearchField";
+import Filter from "sap/ui/model/Filter";
+import FilterOperator from "sap/ui/model/FilterOperator";
 
 /**
  * @namespace sap.com.cashflow.controller
@@ -104,7 +109,7 @@ export default class Stock extends BaseController {
 			});*/
 
 		let oModel = new JSONModel();
-		oModel.loadData("../model/data.json");
+		oModel.loadData("../model/data/data.json");
 		this.setModel(oModel, "StockModel");
 	}
 
@@ -145,7 +150,7 @@ export default class Stock extends BaseController {
 			},
 		});
 
-		fetch("../model/cashFlow.json")
+		fetch("../model/data/cashFlow.json")
 			.then((response) => response.json())
 			.then((json) => {
 				this._data = json;
@@ -187,9 +192,42 @@ export default class Stock extends BaseController {
 						path: "/dataset",
 						template: new StandardListItem({
 							title: "{name}",
-							description: "{symbol}",
+							info: "{symbol}",
 						}),
 					},
+					headerToolbar: new OverflowToolbar({
+						content: [
+							new ToolbarSpacer({}),
+							new SearchField({
+								liveChange: function (oEvent) {
+									// add filter for search
+									var aFilters = [];
+									var sQuery = oEvent.getSource().getValue();
+									if (sQuery && sQuery.length > 0) {
+										var filter = new Filter(
+											"symbol",
+											FilterOperator.Contains,
+											sQuery
+										);
+										//var filter2 = new Filter("name", FilterOperator.Contains, sQuery);
+										aFilters.push(filter);
+										//aFilters.push(filter2);
+									}
+
+									// update list binding
+									//var oList = this.byId("wTable");
+									// @ts-ignore
+									var oBinding = this.getParent()
+										.getParent()
+										.getBinding("items");
+									// @ts-ignore
+									oBinding.filter(aFilters, "Application");
+								},
+								placeholder: "Search by symbol..",
+								width: "20rem",
+							}),
+						],
+					}),
 				}),
 				beginButton: new Button({
 					type: ButtonType.Emphasized,
@@ -208,7 +246,7 @@ export default class Stock extends BaseController {
 				}),
 			});
 
-			fetch("../model/list.json")
+			fetch("../model/data/list.json")
 				.then((response) => response.json())
 				.then((json) => {
 					this._data = json;
