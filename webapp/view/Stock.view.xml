@@ -24,59 +24,108 @@
 
         <sections>
 
-            <ObjectPageSection titleUppercase="false" title="Overview">
+            <ObjectPageSection titleUppercase="false" title="Details">
                 <subSections>
 
                     <ObjectPageSubSection titleUppercase="false">
                         <blocks>
                             <m:VBox class="sapUiSmallMargin">
-                                <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Company Information" singleContainerFullSize="true">
-                                    <f:content>
-                                        <m:Label text="Asset Type" />
-                                        <m:Text text="{StockModel>/AssetType}" />
-                                        <m:Label text="Country" />
-                                        <m:Text text="{StockModel>/Country}" />
-                                        <m:Label text="Sector" />
-                                        <m:Text text="{StockModel>/Sector}" />
-                                        <m:Label text="Industry" />
-                                        <m:Text text="{StockModel>/Industry}" />
-                                        <m:Label text="Address" />
-                                        <m:Text text="{StockModel>/Address}" />
-                                        <m:Label text="Asset Type" />
-                                        <m:Text text="{StockModel>/AssetType}" />
-                                    </f:content>
-                                </f:SimpleForm>
-                            </m:VBox>
-                        </blocks>
-                    </ObjectPageSubSection>
 
-                    <ObjectPageSubSection titleUppercase="false">
-                        <blocks>
-                            <m:VBox class="sapUiSmallMargin">
-                                <f:SimpleForm editable="false" layout="ResponsiveGridLayout" title="Financial Summary" singleContainerFullSize="true">
-                                    <f:content>
-                                        <m:Label text="Fiscal Year End" />
-                                        <m:Text text="{StockModel>/FiscalYearEnd}" />
-                                        <m:Label text="Latest Quarter" />
-                                        <m:Text text="{StockModel>/LatestQuarter}" />
-                                        <m:Label text="Market Capitalization" />
-                                        <m:Text text="{StockModel>/MarketCapitalization}" />
-                                        <m:Label text="Dividend Per Share" />
-                                        <m:Text text="{StockModel>/DividendPerShare}" />
-                                        <m:Label text="Dividend Yield" />
-                                        <m:Text text="{StockModel>/DividendYield}" />
-                                        <m:Label text="Revenue Per Share TTM" />
-                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
-                                        <m:Label text="Revenue PerShare TTM" />
-                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
-                                        <m:Label text="Quarterly Earnings Growth" />
-                                        <m:Text text="{StockModel>/QuarterlyEarningsGrowthYOY}" />
-                                        <m:Label text="Quarterly Revenue Growth" />
-                                        <m:Text text="{StockModel>/QuarterlyRevenueGrowthYOY}" />
-                                        <m:Label text="Analyst Target Price" />
-                                        <m:Text text="{StockModel>/AnalystTargetPrice}" />
-                                    </f:content>
-                                </f:SimpleForm>
+                                <f:Form id="FormDisplay354wideDual" editable="false">
+                                    <f:title>
+                                        <core:Title text="Overview" />
+                                    </f:title>
+                                    <f:layout>
+                                        <f:ResponsiveGridLayout labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" />
+                                    </f:layout>
+                                    <f:formContainers>
+                                        <f:FormContainer title="Company Information">
+                                            <f:formElements>
+                                                <f:FormElement label="Asset Type">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/AssetType}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Country">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/Country}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Sector">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/Sector}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Industry">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/Industry}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Address">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/Address}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                            </f:formElements>
+                                        </f:FormContainer>
+
+                                        <f:FormContainer title="Financial Summary">
+                                            <f:formElements>
+                                                <f:FormElement label="Fiscal Year End">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/FiscalYearEnd}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Latest Quarter">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/LatestQuarter}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Market Capitalization">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/MarketCapitalization}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Dividend Per Share">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/DividendPerShare}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Dividend Yield">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/DividendYield}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Revenue Per Share TTM">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Revenue PerShare TTM">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/RevenuePerShareTTM}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Quarterly Earnings Growth">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/QuarterlyEarningsGrowthYOY}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Quarterly Revenue Growth">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/QuarterlyRevenueGrowthYOY}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                                <f:FormElement label="Analyst Target Price">
+                                                    <f:fields>
+                                                        <m:Text text="{StockModel>/AnalystTargetPrice}" />
+                                                    </f:fields>
+                                                </f:FormElement>
+                                            </f:formElements>
+                                        </f:FormContainer>
+                                    </f:formContainers>
+                                </f:Form>
+
                             </m:VBox>
                         </blocks>
                     </ObjectPageSubSection>
@@ -101,7 +150,6 @@
                         <blocks>
 
                             <layout:FixFlex id='chartFixFlex' minFlexSize="250">
-                                <!--Below is the setting panel -->
                                 <layout:fixContent>
                                     <m:Panel id='settingsPanel' class="panelStyle" expandable="true" expanded="true" headerText="Settings" width="auto">
                                         <m:content>
@@ -118,8 +166,27 @@
                                                 </m:VBox>
 
                                                 <m:VBox class='settingsBox'>
+                                                    <m:Label text="Chart Type" design="Bold" class='settingsLabel'></m:Label>
+                                                    <m:RadioButtonGroup id='chartTypeRadioGroup' select="onChartTypeSelected">
+                                                        <m:buttons>
+                                                            <m:RadioButton class='settingsRadio' text="Line" />
+                                                            <m:RadioButton class='settingsRadio' text="Column"/>
+                                                        </m:buttons>
+                                                    </m:RadioButtonGroup>
+                                                </m:VBox>
+
+                                                <m:VBox class='settingsBox'>
                                                     <m:Label text="Compare Market" design="Bold" class='settingsLabel'></m:Label>
                                                     <m:Button icon="sap-icon://compare" press="onComparePressed" ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                                                        <m:layoutData>
+                                                            <m:FlexItemData growFactor="1" />
+                                                        </m:layoutData>
+                                                    </m:Button>
+                                                </m:VBox>
+
+                                                <m:VBox class='settingsBox'>
+                                                    <m:Label text="" design="Bold" class='settingsLabel'></m:Label>
+                                                    <m:Button icon="sap-icon://reset" press="onResetPressed" ariaDescribedBy="defaultButtonDescription genericButtonDescription">
                                                         <m:layoutData>
                                                             <m:FlexItemData growFactor="1" />
                                                         </m:layoutData>
@@ -137,20 +204,20 @@
                                             <viz.data:FlattenedDataset data="{/dataset}">
 
                                                 <viz.data:dimensions>
-                                                    <viz.data:DimensionDefinition name="fiscalDateEnding" value="{fiscalDateEnding}" />
+                                                    <viz.data:DimensionDefinition name="Fiscal Date Ending" value="{fiscalDateEnding}" />
                                                 </viz.data:dimensions>
 
                                                 <viz.data:measures>
-                                                    <viz.data:MeasureDefinition name="operatingCashflow" value="{operatingCashflow}" />
-                                                    <viz.data:MeasureDefinition name="Cost" value="{Cost}" />
+                                                    <viz.data:MeasureDefinition name="{/companySymbol}" value="{operatingCashflow}" />
+                                                    <viz.data:MeasureDefinition name="{/competitorCompanySymbol}" value="{competitorOperatingCashflow}" />
                                                 </viz.data:measures>
 
                                             </viz.data:FlattenedDataset>
                                         </viz:dataset>
 
                                         <viz:feeds>
-                                            <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="operatingCashflow" />
-                                            <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="fiscalDateEnding" />
+                                            <viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="{/companySymbol}" />
+                                            <viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Fiscal Date Ending" />
                                         </viz:feeds>
 
                                         <viz:dependents>
