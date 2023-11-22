@@ -25,8 +25,6 @@ import { ICompanyOverview } from "../interface/ICompanyOverview";
 import RadioButtonGroup from "sap/m/RadioButtonGroup";
 import VizFrame from "sap/viz/ui5/controls/VizFrame";
 import FeedItem from "sap/viz/ui5/controls/common/feeds/FeedItem";
-import Measure from "sap/chart/data/Measure";
-import Dataset from "sap/viz/ui5/data/Dataset";
 import FlattenedDataset from "sap/viz/ui5/data/FlattenedDataset";
 import { IActiveStock } from "../interface/IActiveStock";
 import { parse } from "papaparse";

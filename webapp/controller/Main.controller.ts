@@ -15,6 +15,10 @@ export default class Main extends BaseController {
 		this._getAllActiveStocks();
 	}
 
+	/**
+	 *  Search handler
+	 * @param oEvent
+	 */
 	public onSearch(oEvent: any): void {
 		// add filter for search
 		var aFilters = [];
@@ -31,6 +35,10 @@ export default class Main extends BaseController {
 		oBinding.filter(aFilters, "Application");
 	}
 
+	/**
+	 * On drill down press
+	 * @param oEvent
+	 */
 	public onPress(oEvent: any): void {
 		const symbol = oEvent
 			.getSource()
@@ -41,6 +49,9 @@ export default class Main extends BaseController {
 		});
 	}
 
+	/**
+	 * API call for get all active stocks
+	 */
 	private _getAllActiveStocks() {
 		if (LOCAL_ENV) {
 			let oModel = new JSONModel();
