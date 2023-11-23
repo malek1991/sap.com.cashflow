@@ -170,7 +170,7 @@
                                                     <m:RadioButtonGroup id='chartTypeRadioGroup' select="onChartTypeSelected">
                                                         <m:buttons>
                                                             <m:RadioButton class='settingsRadio' text="Line" />
-                                                            <m:RadioButton class='settingsRadio' text="Column"/>
+                                                            <!-- <m:RadioButton class='settingsRadio' text="Column"/> -->
                                                         </m:buttons>
                                                     </m:RadioButtonGroup>
                                                 </m:VBox>
