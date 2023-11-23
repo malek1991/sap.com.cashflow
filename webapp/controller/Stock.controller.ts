@@ -200,10 +200,12 @@ export default class Stock extends BaseController {
 							header: true,
 							dynamicTyping: true,
 							complete: (result) => {
-								// Handle the parsed data
 								// @ts-ignore
 								parsedData = result.data;
-								delete parsedData[6568];
+								//delete parsedData[6569];
+								parsedData.forEach((item: IActiveStock, index: number) => {
+									if (typeof item.symbol !== "string") delete parsedData[index];
+								});
 
 								let model = new JSONModel();
 

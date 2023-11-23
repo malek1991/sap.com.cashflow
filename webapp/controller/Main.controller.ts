@@ -75,11 +75,12 @@ export default class Main extends BaseController {
 					parse(responseData, {
 						header: true,
 						dynamicTyping: true,
-						complete: (result) => {
-							// Handle the parsed data
+						complete: (result) => {							
 							// @ts-ignore
 							parsedData = result.data;
-							delete parsedData[6568];
+							parsedData.forEach((item: IActiveStock, index: number) => {
+								if (typeof item.symbol !== "string") delete parsedData[index];
+							});
 						},
 						error: (error: Error) => {
 							// Handle parsing errors
