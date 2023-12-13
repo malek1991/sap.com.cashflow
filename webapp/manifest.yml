@@ -1,0 +1,6 @@
+---
+applications:
+  - name: sap.com.cashflow
+    path: ./SAP.COM.CASHFLOW-1
+  - name: sap.com.cashflow
+    path: ./SAP.COM.CASHFLOW-1
